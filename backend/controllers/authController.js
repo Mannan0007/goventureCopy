@@ -27,6 +27,7 @@ export const register = async (req, res, next) => {
       email,
       password: hashedPassword,
     });
+ 
 
     // Send email verification to user
     await sendVerificationEmail(user, res);

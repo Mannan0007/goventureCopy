@@ -1,0 +1,56 @@
+.newsletter {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+  text-align: center;
+  animation: fadeIn 1s ease-in;
+}
+
+.newsletter h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.newsletter p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.subscribe-form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.subscribe-form button {
+  padding: 0.8rem 2rem;
+  background: #0077B6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.subscribe-form button:hover {
+  background: #0077B6;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .subscribe-form {
+    flex-direction: column;
+  }
+  
+  .subscribe-form button {
+    width: 100%;
+  }
+}

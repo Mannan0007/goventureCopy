@@ -3,6 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './components/login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
+import Home from './components/Home';
+import TravelPackages from './components/TravelPackages';
+// import './App.css';
+
 
 const App = () => {
   return (
@@ -10,6 +14,8 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path='/home' element={<Home/>}/>
+      <Route path='/packages' element={<TravelPackages/>}/>
     </Routes>
   );
 };

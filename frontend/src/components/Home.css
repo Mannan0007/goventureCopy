@@ -1,0 +1,120 @@
+/* Global Styles */
+/* In your Home.css or global styles */
+body {
+    padding-top: 80px; /* Adjust based on Navbar height */
+  }
+  
+
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+/* Navbar Styles */
+.navbar {
+  width: 100%;
+  background-color: #0077B6;
+  color: white;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/* Hero Section Styles */
+/* Hero.css or general styles */
+.hero {
+    overflow: hidden;
+    height: 100vh; /* Ensure the hero doesn't push content up */
+  }
+  
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.explore-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background: #0077B6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.explore-btn:hover {
+  background: #005f8d;
+  transform: translateY(-2px);
+}
+
+/* Services Section Styles */
+.services {
+  width: 100%;
+  background-color: #fff;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.services p {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #555;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .explore-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .services h2 {
+    font-size: 2rem;
+  }
+
+  .services p {
+    font-size: 1rem;
+  }
+}

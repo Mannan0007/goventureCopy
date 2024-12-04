@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 
+
 import path from "path";
 
 //securty packges
@@ -23,6 +24,12 @@ app.use(express.static(path.join(__dirname, "views/build")));
 const PORT = process.env.PORT || 3000;
 
 dbConnection();
+
+
+
+app.get("/api/register",(req,res)=>{
+  res.send("Yeh hai register")
+})
 
 app.use(helmet());
 app.use(cors());
