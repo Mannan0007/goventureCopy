@@ -30,7 +30,7 @@ const Login = () => {
             <button type="submit">Login</button>
           </form>
         </div>
-        <h1>A Strong Desire to Explore?</h1>
+        <h1 className='login-heading1'>A Strong Desire to Explore?</h1>
       </div>
     </>
   );

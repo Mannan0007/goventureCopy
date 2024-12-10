@@ -4,7 +4,7 @@
   left: 0; /* Ensure it's aligned to the left */
   width: 100%;
   padding: 1rem 2rem;
-  background: rgba(136, 128, 128, 0.95);
+  background: rgba(98, 95, 95, 0.95);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,7 +46,7 @@
 .login-btn {
   background: transparent;
   border: 2px solid #ffffff;
-  color: black;
+  color: rgb(160, 255, 96);
 }
 
 .register-btn {

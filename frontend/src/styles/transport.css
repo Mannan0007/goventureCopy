@@ -1,0 +1,132 @@
+.transport-heading{
+    margin-top: 120px;
+}
+.transport-choice{
+    margin: 20px;
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
+    background-color:rgb(168, 164, 164);
+    display: flex;
+    flex-direction: column;
+    box-shadow: wheat;
+    border-radius: 15px;
+    position: relative;
+    top: 90px;
+
+}
+.iconss{
+  position: relative;
+  
+  justify-content: center;
+  display: flex;
+  gap: 100px;
+}
+
+.icon {
+    width: 50px;
+    height: 20px;
+    transition: transform 0.3s ease; /* Smooth transition */
+  }
+  
+  .icon:hover {
+    cursor: pointer;
+    transform: scale(1.5); /* Makes the icon 1.5 times bigger on hover */
+  }
+  .images-transport {
+    position: relative;
+    width: auto;
+    height: auto; /* Take full viewport height */
+    overflow: hidden; /* Ensures the content fits inside */
+  }
+  
+  .images-transport img {
+
+    height: auto;
+    width: auto;
+    object-fit: cover;
+    opacity: 0.6; /* Adjust the opacity for a semi-transparent effect */
+  }
+  .images-transport::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for darkness */
+    z-index: 1; /* Ensure the overlay is above the image */
+  }
+  
+  .images-transport .quote-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0); /* Text color for contrast */
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5); /* Slight background for better readability */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
+  }
+  .video-transport {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Ensures content stays within the container */
+    background-color: rgba(0, 0, 0, 0.3); /* Add a background color with transparency */
+    margin-top: 20px;
+  }
+  
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire container */
+    z-index: -1; /* Places the video behind the overlay */
+  }
+  
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Background color with transparency */
+    z-index: 0; /* Layer it between the video and text overlay */
+  }
+  
+  .video-transport .quote-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color for contrast */
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the text */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    z-index: 1; /* Ensure the text is above everything */
+  }
+  .video-transport .quote-overlay2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black; /* Text color for contrast */
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+    /* background: rgba(0, 0, 0, 0.5); Semi-transparent background for the text */
+    border-radius: 8px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); Subtle shadow for depth */
+    z-index: 1; /* Ensure the text is above everything */
+  }
+  

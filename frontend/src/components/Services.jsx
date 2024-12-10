@@ -1,6 +1,6 @@
 import React from 'react';
 import './Services.css';
-import { FaClock, FaShieldAlt, FaTag, FaMapMarkedAlt, FaHeadset, FaHotel } from 'react-icons/fa';
+import { FaClock, FaShieldAlt, FaTag, FaMapMarkedAlt } from 'react-icons/fa';
 
 const services = [
   {
@@ -43,8 +43,8 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="services">
-      <div className="section-title">
+    <section className="services" id='explore-section'>
+      <div className="section-title" >
         <h2>Why Choose Us</h2>
         <p>Experience the best in travel with our premium services</p>
       </div>
