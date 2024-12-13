@@ -1,5 +1,6 @@
+/* Main Navbar Styling */
 .navbar {
-  position: relative;
+  position: fixed; /* Keep navbar fixed at the top of the screen */
   top: 0;
   left: 0; /* Ensure it's aligned to the left */
   width: 100%;
@@ -12,18 +13,21 @@
   z-index: 1000;
 }
 
+/* Logo Styling */
 .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: #ffffff;
 }
 
+/* Navbar links layout */
 .nav-links {
   display: flex;
   gap: 2rem;
   align-items: center;
 }
 
+/* Styling for nav-links items */
 .nav-links a {
   text-decoration: none;
   color: #ffffff;
@@ -31,10 +35,12 @@
   transition: color 0.3s ease;
 }
 
+/* Hover effect for nav-links */
 .nav-links a:hover {
   color: #0077B6;
 }
 
+/* Styling for buttons */
 .login-btn, .register-btn {
   padding: 0.5rem 1rem;
   border: none;
@@ -55,11 +61,13 @@
   margin-left: 1rem;
 }
 
+/* Button hover effect */
 .login-btn:hover, .register-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+/* Hamburger menu */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -74,23 +82,28 @@
   transition: all 0.3s ease;
 }
 
+/* Mobile Menu (Responsive) */
 @media (max-width: 768px) {
+  /* Show hamburger icon */
   .hamburger {
     display: flex;
   }
 
+  /* Adjust nav-links for mobile */
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: absolute; /* Make it absolute for overlay effect */
+    top: 100%; /* Position right below the navbar */
     left: 0;
     right: 0;
     background: white;
     flex-direction: column;
     padding: 1rem;
     gap: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 
+  /* When the mobile menu is active */
   .nav-links.active {
     display: flex;
   }

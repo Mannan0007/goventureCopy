@@ -6,6 +6,8 @@ import ForgotPassword from './components/ForgotPassword';
 import Home from './components/Home';
 import TravelPackages from './components/TravelPackages';
 import Transport from './components/Transport';
+import Contact from './components/Contact';
+import BlogPge from './components/BlogPge';
 // import './App.css';
 
 
@@ -18,6 +20,8 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/packages' element={<TravelPackages/>}/>
       <Route path='/transport' element={<Transport/>}/>
+      <Route path='/contact' element={<Contact/>}/>
+      <Route path='/blogpge' element={<BlogPge/>}/>
     </Routes>
   );
 };
