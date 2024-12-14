@@ -1,9 +1,9 @@
 import express from 'express';
-import { getAirlineData } from '../controllers/flightController.js';
+import { getFlightDetailsByNumber } from '../controllers/flightController.js';
 
 const router = express.Router();
 
-// Route to fetch flight details (airline data)
-router.get('/airlines', getAirlineData);
+// Route to fetch flight details by flight number
+router.get('/', getFlightDetailsByNumber);
 
 export default router;
