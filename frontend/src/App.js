@@ -8,6 +8,8 @@ import TravelPackages from './components/TravelPackages';
 import Transport from './components/Transport';
 import Contact from './components/Contact';
 import BlogPge from './components/BlogPge';
+import FlightSearch from './components/Flights';
+import TrainDetails from './components/Train';
 // import './App.css';
 
 
@@ -22,6 +24,8 @@ const App = () => {
       <Route path='/transport' element={<Transport/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/blogpge' element={<BlogPge/>}/>
+      <Route path='/flights' element={<FlightSearch/>}/>
+      <Route path='/train' element={<TrainDetails/>}/>
     </Routes>
   );
 };

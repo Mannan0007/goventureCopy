@@ -7,6 +7,7 @@ import airplaneVid from '../images/2658998-hd_1920_1080_30fps.mp4'; // Adjust th
 import railvid from '../images/856360-hd_1920_1080_30fps.mp4'
 import busvid from '../images/4194079-hd_1920_1080_30fps.mp4'
 import cabvid from '../images/3656906-hd_1920_1080_30fps.mp4'
+import { Link } from 'react-router-dom';
 
 import bookeasily from '../images/4464270-uhd_3840_2160_25fps.mp4'
 
@@ -84,7 +85,10 @@ const Transport = () => {
   <div className="quote-overlay">
     "Take to the skies with comfort and affordability – your dream destination is just a flight away!" 
     <br />
+
+    <Link to='/flights'>
 <button>Book now</button>
+    </Link>
   </div>
 </div>
 
@@ -99,40 +103,13 @@ const Transport = () => {
   <div className="quote-overlay">
     "All aboard for a scenic journey! Travel in comfort, with breathtaking views along the way, and arrive relaxed and on time" 
     <br />
-    <button>Book now</button>
-
+    <Link to='/train'>
+<button>Book now</button>
+    </Link>
   </div>
 </div>
 
 
-    <div className="video-transport" id="reach-sectionforcab">
-  <div className="background-overlay"></div>
-  <video autoPlay loop muted className="background-video">
-    <source src={cabvid} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <div className="quote-overlay">
-    "Hop in and ride in style—your destination is just a smooth drive away. Comfort, convenience, and speed all in one ride!" 
-    <br />
-    <button>Book now</button>
-
-  </div>
-</div>
-
-
-    <div className="video-transport" id="reach-sectionforbus">
-  <div className="background-overlay"></div>
-  <video autoPlay loop muted className="background-video">
-    <source src={busvid} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <div className="quote-overlay">
-    "Sit back, relax, and enjoy the ride. Our buses take you where you need to go with comfort and reliability" 
-    <br />
-    <button>Book now</button>
-
-  </div>
-</div>
 
 
 
