@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import flightsData from "../flightsData";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+
 
 const FlightSearch = () => {
   const [origin, setOrigin] = useState("");
@@ -77,7 +80,9 @@ const FlightSearch = () => {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
+    <>
+    <Navbar/>
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", marginTop:"130px"}}>
       <h1>Flight Search</h1>
       <div style={{ position: "relative" }}>
         <input
@@ -234,6 +239,9 @@ const FlightSearch = () => {
         </div>
       )}
     </div>
+    <Footer/>
+      
+    </>
   );
 };
 

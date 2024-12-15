@@ -58,10 +58,10 @@ const Transport = () => {
  
 
 
-<h3>Seamless journeys by cab, train, or bus and even flights – travel your way, anytime, anywhere!</h3>
+<h3>Seamless journeys by train, and flights – travel your way, anytime, anywhere!</h3>
 <div className='iconss'>
-  <FaTaxi className='icon' onClick={scrollforcab}/>
-  <FaBusAlt className='icon' onClick={scrollforbus}/>
+  {/* <FaTaxi className='icon' onClick={scrollforcab}/>
+  <FaBusAlt className='icon' onClick={scrollforbus}/> */}
   <FaTrain className='icon' onClick={scrollforrail}/>
   <FaPlane className='icon' onClick={scrollforair}/>
 </div>

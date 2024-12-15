@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/train.css"; // Add this import to use the CSS
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const TrainDetails = () => {
   const [trainNumber, setTrainNumber] = useState("");
@@ -25,6 +27,8 @@ const TrainDetails = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="train-details-container">
       <h1>Search Train Details</h1>
       <input
@@ -32,7 +36,7 @@ const TrainDetails = () => {
         placeholder="Enter Train Number"
         value={trainNumber}
         onChange={(e) => setTrainNumber(e.target.value)}
-      />
+        />
       <button onClick={fetchTrainDetails}>Search</button>
 
       {error && <p className="error">{error}</p>}
@@ -74,6 +78,8 @@ const TrainDetails = () => {
         </div>
       )}
     </div>
+    <Footer/>
+          </>
   );
 };
 
