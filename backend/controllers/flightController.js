@@ -1,22 +1,35 @@
 import axios from 'axios';
 import Flight from '../models/flightModel.js';
 
-// Controller to fetch flight data from the IATA and ICAO Codes API
-export const getAirlineData = async (req, res) => {
+
+export const getFlightDetailsByNumber = async (req, res) => {
+    const { flightNumber } = req.query; // Expect the flight number as a query parameter
+
+    if (!flightNumber) {
+        return res.status(400).json({ message: 'Flight number is required' });
+    }
+
     const options = {
         method: 'GET',
-        url: 'https://iata-and-icao-codes.p.rapidapi.com/airlines',
+        url: 'https://flightera-flight-data.p.rapidapi.com/flight/info',
+        params: { flnr: flightNumber }, // Passing the flight number dynamically
         headers: {
-            'x-rapidapi-key': '6247f98e83mshc67285fe30457b6p1adc3ajsn862ff08a6230', // Your RapidAPI Key
-            'x-rapidapi-host': 'iata-and-icao-codes.p.rapidapi.com'
+            'x-rapidapi-key': 'ada078e11bmsh6488eaf73e2ae03p171055jsnf589aab9d048', // Updated RapidAPI Key
+            'x-rapidapi-host': 'flightera-flight-data.p.rapidapi.com'
         }
     };
 
     try {
         const response = await axios.request(options);
-        res.status(200).json(response.data); // Return the API response to the client
+
+        // Check if the API returned any data
+        if (!response.data || Object.keys(response.data).length === 0) {
+            return res.status(404).json({ message: 'No flight data found for the provided flight number' });
+        }
+
+        res.status(200).json(response.data); // Send the flight details as the response
     } catch (error) {
-        console.error('Error fetching airline data:', error.message);
-        res.status(500).json({ message: 'Failed to fetch airline data', error: error.message });
+        console.error('Error fetching flight details:', error.message);
+        res.status(500).json({ message: 'Failed to fetch flight details', error: error.message });
     }
 };
