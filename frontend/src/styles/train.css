@@ -1,0 +1,92 @@
+/* TrainDetails CSS */
+.train-details-container {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .train-details-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .train-details-container input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .train-details-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .train-details-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .train-details-container p {
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  .train-details-container p.error {
+    color: #d9534f;
+    font-weight: bold;
+  }
+  
+  .train-details-container h2 {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .train-details-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .train-details-container ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .train-details-container ul li:last-child {
+    border-bottom: none;
+  }
+  
+  .train-details-container ul li strong {
+    color: #007bff;
+  }
+  
+  .train-details-container .schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .train-details-container .schedule-item span {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .train-details-container .highlight {
+    color: #28a745;
+    font-weight: bold;
+  }
+   
