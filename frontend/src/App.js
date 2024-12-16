@@ -11,6 +11,7 @@ import BlogPge from './components/BlogPge';
 import FlightSearch from './components/Flights';
 import TrainDetails from './components/Train';
 import Cab from './components/Cab';
+import CustomizePackage from './components/CustomizePackage';
 // import './App.css';
 
 
@@ -28,6 +29,7 @@ const App = () => {
       <Route path='/flights' element={<FlightSearch/>}/>
       <Route path='/train' element={<TrainDetails/>}/>
       <Route path='/cabs' element={<Cab/>}/>
+      <Route path='/customize-package' element={<CustomizePackage/>}/>
     </Routes>
   );
 };

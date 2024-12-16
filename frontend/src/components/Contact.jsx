@@ -75,6 +75,7 @@ import './Contact.css';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 import Navbar from './Navbar';  // Import Navbar as a component
+import Footer from './Footer.jsx';
 
 const Feedback = () => {
   const form = useRef();
@@ -101,6 +102,8 @@ const Feedback = () => {
   };
 
   return (
+    <>
+
     <section className="contact">
       <Navbar /> {/* Rendering the Navbar here */}
       <form ref={form} onSubmit={sendEmail} className="contact__form">
@@ -139,6 +142,9 @@ const Feedback = () => {
         <button type="submit">Send Message</button>
       </form>
     </section>
+
+    <Footer/>
+    </>
   );
 };
 
