@@ -6,21 +6,21 @@ const destinations = [
     id: 1,
     name: 'Bali, Indonesia',
     description: 'Tropical paradise with beautiful beaches and rich culture',
-    price: '$899',
+    price: '₹18990',
     image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4'
   },
   {
     id: 2,
     name: 'Santorini, Greece',
     description: 'Stunning white architecture and Mediterranean beauty',
-    price: '$1299',
+    price: '₹129900',
     image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8'
   },
   {
     id: 3,
     name: 'Swiss Alps',
     description: 'Majestic mountains and scenic landscapes',
-    price: '$1499',
+    price: '₹149900',
     image: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7'
   }
 ];

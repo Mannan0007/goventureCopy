@@ -5,7 +5,7 @@ import Footer from './Footer'
 import { FaTaxi,FaBusAlt,FaTrain,FaPlane } from "react-icons/fa";
 import airplaneVid from '../images/2658998-hd_1920_1080_30fps.mp4'; // Adjust the path based on the component's location
 import railvid from '../images/856360-hd_1920_1080_30fps.mp4'
-import busvid from '../images/4194079-hd_1920_1080_30fps.mp4'
+// import busvid from '../images/4194079-hd_1920_1080_30fps.mp4'
 import cabvid from '../images/3656906-hd_1920_1080_30fps.mp4'
 import { Link } from 'react-router-dom';
 
@@ -60,8 +60,8 @@ const Transport = () => {
 
 <h3>Seamless journeys by train, and flights – travel your way, anytime, anywhere!</h3>
 <div className='iconss'>
-  {/* <FaTaxi className='icon' onClick={scrollforcab}/>
-  <FaBusAlt className='icon' onClick={scrollforbus}/> */}
+  <FaTaxi className='icon' onClick={scrollforcab}/>
+  {/* <FaBusAlt className='icon' onClick={scrollforbus}/> */}
   <FaTrain className='icon' onClick={scrollforrail}/>
   <FaPlane className='icon' onClick={scrollforair}/>
 </div>
@@ -87,6 +87,23 @@ const Transport = () => {
     <br />
 
     <Link to='/flights'>
+<button>Book now</button>
+    </Link>
+  </div>
+</div>
+
+
+
+    <div className="video-transport" id="reach-sectionforcab">
+  <div className="background-overlay"></div>
+  <video autoPlay loop muted className="background-video">
+    <source src={cabvid} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div className="quote-overlay">
+    "Pick your ride on the spot , and be relaxed because we got you" 
+    <br />
+    <Link to='/cabs'>
 <button>Book now</button>
     </Link>
   </div>

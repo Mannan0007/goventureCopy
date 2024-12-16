@@ -6,21 +6,21 @@ const packages = [
     id: 1,
     title: 'European Adventure',
     description: '10 days exploring Paris, Rome, and Barcelona',
-    price: '$2499',
+    price: '₹249900',
     image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8'
   },
   {
     id: 2,
     title: 'Asian Discovery',
     description: '12 days in Tokyo, Seoul, and Bangkok',
-    price: '$2199',
+    price: '₹219900',
     image: 'https://images.unsplash.com/photo-1480796927426-f609979314bd'
   },
   {
     id: 3,
     title: 'Island Paradise',
     description: '7 days in Maldives with water activities',
-    price: '$1899',
+    price: '₹89900',
     image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8'
   }
 ];

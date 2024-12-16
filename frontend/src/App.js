@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import BlogPge from './components/BlogPge';
 import FlightSearch from './components/Flights';
 import TrainDetails from './components/Train';
+import Cab from './components/Cab';
 // import './App.css';
 
 
@@ -26,6 +27,7 @@ const App = () => {
       <Route path='/blogpge' element={<BlogPge/>}/>
       <Route path='/flights' element={<FlightSearch/>}/>
       <Route path='/train' element={<TrainDetails/>}/>
+      <Route path='/cabs' element={<Cab/>}/>
     </Routes>
   );
 };

@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <Link to="/home">
+      <Link to="/">
         <div className="logo">GoVenture</div>
       </Link>
       <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -82,10 +82,14 @@ const Navbar = () => {
           <span>Blogs</span>
         </Link>
         <Link to="/login">
-          <button className="login-btn">Login</button>
+          {/* <button className="login-btn">Login</button> */}
+          <span>Login</span>
+
         </Link>
         <Link to="/register">
-          <button className="login-btn">Register</button>
+          {/* <button className="login-btn">Register</button> */}
+          <span>Register</span>
+
         </Link>
         <button className="register-btn">ASK AI</button>
       </div>
