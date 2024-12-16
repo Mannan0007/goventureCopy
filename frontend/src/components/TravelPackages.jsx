@@ -25,7 +25,7 @@ const TravelPackages = () => {
     {
       id: 3,
       city: "Tokyo",
-      description: "Experience the culture, technology, and food of Tokyo in this 6-day travel package.",
+      description: "Experience the culture, technology, and food of Tokyo in this 6-day travel    package. ",
       price: "₹107,900",
       image: "https://images.unsplash.com/photo-1480796927426-f609979314bd",
     },
