@@ -69,18 +69,12 @@ const PORT = process.env.PORT || 3000;
 
 dbConnection();
 
-// Test route for `/api/register` to see if the API is responsive
-app.get("/api/register",(req,res)=>{
-  res.send("Yeh hai register")
-})
-
 app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
-
 app.use(morgan("dev"));
 
 // Add logging to verify if the routes are working correctly
@@ -89,6 +83,7 @@ app.use("/api", (req, res, next) => {
   next();  // Pass control to the next middleware (router)
 });
 
+app.use(router);
 app.use("/api", router);
 
 // Error middleware

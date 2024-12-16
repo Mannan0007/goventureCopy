@@ -12,7 +12,7 @@ export const getCabDetails = async (req, res) => {
     url: 'https://booking-com15.p.rapidapi.com/api/v1/taxi/searchLocation',
     params: { query: destination },
     headers: {
-      'x-rapidapi-key': '6247f98e83mshc67285fe30457b6p1adc3ajsn862ff08a6230',
+      'x-rapidapi-key': 'fb5e5893d3msh5ebc6d76cbde42bp1453f8jsnb2c285f5afaa',
       'x-rapidapi-host': 'booking-com15.p.rapidapi.com',
     },
   };
