@@ -4,8 +4,13 @@ import Navbar from './Navbar'
 import '../styles/travelpackage.css';
 import Footer from './Footer'
 
+
+import { useNavigate } from "react-router-dom"; // Import for navigation
+
 const TravelPackages = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const navigate = useNavigate(); // For redirecting to a new page
+
 
   const packages = [
     {
@@ -271,7 +276,7 @@ const TravelPackages = () => {
       id: 36,
       city: "Kashmir",
       description: "Witness the heavenly beauty of the Kashmir Valley.",
-      price: "23000",
+      price: "₹23000",
       image: "https://media.istockphoto.com/id/1323846766/photo/a-beautiful-view-of-dal-lake-in-winter-srinagar-kashmir-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=66SpftUPpEa6YmhgcV_yJAIKEgGaLpYk43y8yc3v-OI=",
     },
     {
@@ -305,79 +310,59 @@ const TravelPackages = () => {
   ];
   
 
-    // Handle image click
-    const handleClick = (pkg) => {
-      setSelectedPackage(pkg);
-    };
-  
-    // Function to close the modal
-    const closeModal = () => {
-      setSelectedPackage(null);
-    };
-  
-    // Close the modal when clicking outside of it
-    const handleBackdropClick = (e) => {
-      if (e.target.classList.contains('modal')) {
-        closeModal();
-      }
-    };
-  
-    return (
-      <>
-        <Navbar />
-  
-        <div className="travel-packages">
-          <div className='package-heading'>
-            <h1>"Unwrap your dream getaway with our exclusive vacation packages—best deals, unforgettable memories!"</h1>
-          </div>
-  
-          {/* Travel Packages Section */}
-          <div className="packages-list">
-            {packages.map((pkg) => (
-              <div key={pkg.id} className="package-card" onClick={() => handleClick(pkg)}>
-                <img src={pkg.image} alt={pkg.city} />
-                <h2>{pkg.city}</h2>
-                <p>{pkg.description}</p>
-                <p className="price">{pkg.price}</p>
-                <button>Book Now</button>
-              </div>
-            ))}
-          </div>
+  const handlePackageClick = (pkg) => {
+    // Redirect to the package customization page with package details
+    navigate("/customize-package", { state: { package: pkg } });
+  };
+
+  return (
+    <>
+      <Navbar />
+
+      <div className="travel-packages">
+        <div className="package-heading">
+          <h1>
+            "Unwrap your dream getaway with our exclusive vacation packages—best
+            deals, unforgettable memories!"
+          </h1>
         </div>
-  
-        {/* Indian Travel Packages Section */}
-        <div>
-          <h1>Travel Packages Within India</h1>
-          <div className="packages-list">
-            {indianPackages.map((pkg) => (
-              <div key={pkg.id} className="package-card" onClick={() => handleClick(pkg)}>
-                <img src={pkg.image} alt={pkg.city} />
-                <h2>{pkg.city}</h2>
-                <p>{pkg.description}</p>
-                <p className="price">{pkg.price}</p>
-                <button>Book Now</button>
-              </div>
-            ))}
-          </div>
-        </div>
-  
-        {/* Modal for Selected Package */}
-        {selectedPackage && (
-          <div className="modal" onClick={handleBackdropClick}>
-            <div className="modal-content">
-              <span className="close" onClick={closeModal}>&times;</span>
-              <img src={selectedPackage.image} alt={selectedPackage.city} />
-              <h2>{selectedPackage.city}</h2>
-              <p>{selectedPackage.description}</p>
-              <p><strong>Price: {selectedPackage.price}</strong></p>
+
+        {/* Travel Packages Section */}
+        <div className="packages-list">
+          {packages.map((pkg) => (
+            <div key={pkg.id} className="package-card" onClick={() => handlePackageClick(pkg)}>
+              <img src={pkg.image} alt={pkg.city} />
+              <h2>{pkg.city}</h2>
+              <p>{pkg.description}</p>
+              <p className="price">{pkg.price}</p>
               <button>Book Now</button>
             </div>
-          </div>
-        )}
-  
-        <Footer />
-      </>
-    );
-  };
-  
-  export default TravelPackages;
+          ))}
+        </div>
+      </div>
+
+
+      
+
+        <div className="packages-list">
+          {indianPackages.map((pkg) => (
+            <div key={pkg.id} className="package-card" onClick={() => handlePackageClick(pkg)}>
+              <img src={pkg.image} alt={pkg.city} />
+              <h2>{pkg.city}</h2>
+              <p>{pkg.description}</p>
+              <p className="price">{pkg.price}</p>
+              <button>Book Now</button>
+            </div>
+          ))}
+        </div>
+      {/* </div> */}
+
+
+      
+
+      <Footer />
+    </>
+  );
+};
+
+export default TravelPackages;
