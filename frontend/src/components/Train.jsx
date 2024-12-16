@@ -12,7 +12,7 @@ const TrainDetails = () => {
   const fetchTrainDetails = async () => {
     try {
       setError(""); // Clear any previous errors
-      const response = await axios.get("http://localhost:5000/api/trains", {
+      const response = await axios.get("http://localhost:3000/api/trains", {
         params: { trainNumber },
       });
 

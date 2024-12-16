@@ -18,7 +18,7 @@ export const getTrainDetails = async (req, res) => {
             client: 'web'
         },
         headers: {
-            'x-rapidapi-key': '6247f98e83mshc67285fe30457b6p1adc3ajsn862ff08a6230',
+            'x-rapidapi-key': 'fb5e5893d3msh5ebc6d76cbde42bp1453f8jsnb2c285f5afaa',
             'x-rapidapi-host': 'indian-railway-irctc.p.rapidapi.com',
             'x-rapid-api': 'rapid-api-database'
         }
