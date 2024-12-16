@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import flightsData from "../flightsData";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
+import "./flights.css";
+import videoBg from "../images/flightbooking.mp4"; // Import video file
 
 const FlightSearch = () => {
   const [origin, setOrigin] = useState("");
@@ -12,7 +13,7 @@ const FlightSearch = () => {
   const [destinationSuggestions, setDestinationSuggestions] = useState([]);
   const [error, setError] = useState("");
 
-  // Filter unique origins and destinations for suggestions
+  // Unique suggestions
   const uniqueOrigins = [...new Set(flightsData.map((flight) => flight.origin))];
   const uniqueDestinations = [
     ...new Set(flightsData.map((flight) => flight.destination)),
@@ -21,39 +22,25 @@ const FlightSearch = () => {
   const handleOriginChange = (e) => {
     const input = e.target.value;
     setOrigin(input);
-    if (input) {
-      setOriginSuggestions(
-        uniqueOrigins.filter((city) =>
-          city.toLowerCase().includes(input.toLowerCase())
-        )
-      );
-    } else {
-      setOriginSuggestions([]);
-    }
+    setOriginSuggestions(
+      input
+        ? uniqueOrigins.filter((city) =>
+            city.toLowerCase().includes(input.toLowerCase())
+          )
+        : []
+    );
   };
 
   const handleDestinationChange = (e) => {
     const input = e.target.value;
     setDestination(input);
-    if (input) {
-      setDestinationSuggestions(
-        uniqueDestinations.filter((city) =>
-          city.toLowerCase().includes(input.toLowerCase())
-        )
-      );
-    } else {
-      setDestinationSuggestions([]);
-    }
-  };
-
-  const selectOrigin = (city) => {
-    setOrigin(city);
-    setOriginSuggestions([]);
-  };
-
-  const selectDestination = (city) => {
-    setDestination(city);
-    setDestinationSuggestions([]);
+    setDestinationSuggestions(
+      input
+        ? uniqueDestinations.filter((city) =>
+            city.toLowerCase().includes(input.toLowerCase())
+          )
+        : []
+    );
   };
 
   const searchFlights = () => {
@@ -64,12 +51,9 @@ const FlightSearch = () => {
         flight.destination.toLowerCase() === destination.toLowerCase()
     );
 
-    if (filteredFlights.length > 0) {
-      setResults(filteredFlights);
-    } else {
+    setResults(filteredFlights.length > 0 ? filteredFlights : []);
+    if (filteredFlights.length === 0)
       setError("No flights available between these cities.");
-      setResults([]);
-    }
   };
 
   const clearResults = () => {
@@ -81,166 +65,129 @@ const FlightSearch = () => {
 
   return (
     <>
-    <Navbar/>
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", marginTop:"130px"}}>
-      <h1>Flight Search</h1>
-      <div style={{ position: "relative" }}>
-        <input
-          type="text"
-          placeholder="Enter Origin City"
-          value={origin}
-          onChange={handleOriginChange}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        {originSuggestions.length > 0 && (
-          <ul
+      <Navbar />
+
+      {/* Video Background */}
+      <video autoPlay loop muted className="video-background">
+        <source src={videoBg} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Main Content */}
+      <div className="flight-container" style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+        <div className="flight-card" style={{ maxWidth: '600px', background: '#333', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)', color: 'white' }}>
+          <h1
             style={{
-              listStyle: "none",
-              padding: "5px",
-              margin: "0",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              backgroundColor: "#fff",
-              position: "absolute",
-              zIndex: 10,
-              width: "100%",
+              color: "white",
+              textAlign: "center",
+              padding: "15px",
+              backgroundColor: "#222", // Dark background for the heading
+              borderRadius: "8px",
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.5)", // Subtle shadow for depth
+              marginBottom: "20px", // Space below the heading
             }}
           >
-            {originSuggestions.map((city, index) => (
-              <li
-                key={index}
-                onClick={() => selectOrigin(city)}
-                style={{
-                  padding: "5px",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #ddd",
-                }}
-              >
-                {city}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div style={{ position: "relative" }}>
-        <input
-          type="text"
-          placeholder="Enter Destination City"
-          value={destination}
-          onChange={handleDestinationChange}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        {destinationSuggestions.length > 0 && (
-          <ul
+            Flight Search
+          </h1>
+          <input
+            type="text"
+            placeholder="Enter Origin City"
+            value={origin}
+            onChange={handleOriginChange}
+            className="input-box"
             style={{
-              listStyle: "none",
-              padding: "5px",
-              margin: "0",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              backgroundColor: "#fff",
-              position: "absolute",
-              zIndex: 10,
               width: "100%",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Enter Destination City"
+            value={destination}
+            onChange={handleDestinationChange}
+            className="input-box"
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+            }}
+          />
+          <button
+            onClick={searchFlights}
+            style={{
+              width: "100%",
+              padding: "10px",
+              backgroundColor: "#FF4C4C", // Red color
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
             }}
           >
-            {destinationSuggestions.map((city, index) => (
-              <li
-                key={index}
-                onClick={() => selectDestination(city)}
-                style={{
-                  padding: "5px",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #ddd",
-                }}
-              >
-                {city}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <button
-        onClick={searchFlights}
-        style={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: "#007bff",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginBottom: "10px",
-        }}
-      >
-        Search Flights
-      </button>
-      <button
-        onClick={clearResults}
-        style={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: "#6c757d",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Clear Results
-      </button>
+            Search Flights
+          </button>
+          <button
+            onClick={clearResults}
+            style={{
+              width: "100%",
+              padding: "10px",
+              backgroundColor: "#ccc",
+              color: "#000",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              marginTop: "10px",
+            }}
+          >
+            Clear Results
+          </button>
 
-      {error && <p style={{ color: "red", marginTop: "20px" }}>{error}</p>}
-
-      {results.length > 0 && (
-        <div style={{ marginTop: "20px" }}>
-          <h2>Available Flights</h2>
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {results.map((flight, index) => (
-              <li
-                key={index}
-                style={{
-                  marginBottom: "15px",
-                  padding: "10px",
-                  border: "1px solid #ddd",
-                  borderRadius: "5px",
-                  backgroundColor: "#f9f9f9",
-                }}
-              >
-                <p>
-                  <strong>Flight:</strong> {flight.airline} ({flight.flightNumber})
-                </p>
-                <p>
-                  <strong>From:</strong> {flight.origin} to {flight.destination}
-                </p>
-                <p>
-                  <strong>Departure:</strong> {flight.departureTime},{" "}
-                  <strong>Arrival:</strong> {flight.arrivalTime}
-                </p>
-                <p>
-                  <strong>Duration:</strong> {flight.duration},{" "}
-                  <strong>Price:</strong> ₹{flight.price}
-                </p>
-              </li>
-            ))}
-          </ul>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          {results.length > 0 && (
+            <div style={{ marginTop: "20px" }}>
+              <h2 style={{ color: "white" }}>AVAILABLE FLIGHTS</h2>
+              <ul style={{ listStyle: "none", padding: 0 }}>
+                {results.map((flight, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      marginBottom: "15px",
+                      padding: "15px",
+                      border: "1px solid #ddd",
+                      borderRadius: "5px",
+                      backgroundColor: "#444", // Slightly darker background
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold", fontSize: "16px" }}>
+                      <strong>Flight:</strong> {flight.airline} (
+                      {flight.flightNumber})
+                    </div>
+                    <div>
+                      <strong>From:</strong> {flight.origin} to{" "}
+                      {flight.destination}
+                    </div>
+                    <div>
+                      <strong>Departure:</strong> {flight.departureTime},{" "}
+                      <strong>Arrival:</strong> {flight.arrivalTime}
+                    </div>
+                    <div>
+                      <strong>Duration:</strong> {flight.duration},{" "}
+                      <strong>Price:</strong> ₹{flight.price}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      )}
-    </div>
-    <Footer/>
-      
+      </div>
+
+      {/* <Footer /> */}
     </>
   );
 };
