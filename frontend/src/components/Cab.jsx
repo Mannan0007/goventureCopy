@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Cab.css";
 import videoBg from "../images/cabbooking.mp4"; // Correct import path
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Cab = () => {
   const [destination, setDestination] = useState("");
@@ -34,6 +36,9 @@ const Cab = () => {
 
   return (
     <div>
+      {/* Navbar */}
+      <Navbar />
+
       {/* Video Background */}
       <video autoPlay loop muted className="video-background">
         <source src={videoBg} type="video/mp4" />
@@ -110,12 +115,30 @@ const Cab = () => {
                   <div>
                     <strong>Google Place ID:</strong> {cab.googlePlaceId}
                   </div>
+                  {/* Book Button */}
+                  <button
+                    style={{
+                      marginTop: "10px",
+                      padding: "10px 15px",
+                      backgroundColor: "#007BFF", // Blue color
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => alert(`Booked: ${cab.name}`)}
+                  >
+                    Book
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         )}
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

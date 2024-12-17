@@ -1,243 +1,127 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-
+import axios from "axios";
+import "./flight.css"; // Import CSS file
+import videoBg from "../images/flightbooking.mp4"; // Replace with correct path to your flight video background
+import Navbar from "./Navbar"; // Import the Navbar component
 
 const FlightSearch = () => {
   const [flightNumber, setFlightNumber] = useState("");
   const [flightDetails, setFlightDetails] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Filter unique origins and destinations for suggestions
-  const uniqueOrigins = [...new Set(flightsData.map((flight) => flight.origin))];
-  const uniqueDestinations = [
-    ...new Set(flightsData.map((flight) => flight.destination)),
-  ];
-
-  const handleOriginChange = (e) => {
-    const input = e.target.value;
-    setOrigin(input);
-    if (input) {
-      setOriginSuggestions(
-        uniqueOrigins.filter((city) =>
-          city.toLowerCase().includes(input.toLowerCase())
-        )
-      );
-    } else {
-      setOriginSuggestions([]);
-    }
-  };
-
-  const handleDestinationChange = (e) => {
-    const input = e.target.value;
-    setDestination(input);
-    if (input) {
-      setDestinationSuggestions(
-        uniqueDestinations.filter((city) =>
-          city.toLowerCase().includes(input.toLowerCase())
-        )
-      );
-    } else {
-      setDestinationSuggestions([]);
-    }
-  };
-
-  const selectOrigin = (city) => {
-    setOrigin(city);
-    setOriginSuggestions([]);
-  };
-
-  const selectDestination = (city) => {
-    setDestination(city);
-    setDestinationSuggestions([]);
-  };
-
-  const searchFlights = () => {
+  const handleFlightSearch = async () => {
     setError("");
-    const filteredFlights = flightsData.filter(
-      (flight) =>
-        flight.origin.toLowerCase() === origin.toLowerCase() &&
-        flight.destination.toLowerCase() === destination.toLowerCase()
-    );
+    setFlightDetails(null);
+    setLoading(true);
 
-    if (filteredFlights.length > 0) {
-      setResults(filteredFlights);
-    } else {
-      setError("No flights available between these cities.");
-      setResults([]);
+    if (!flightNumber.trim()) {
+      setError("Please enter a flight number.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/flights?flightNumber=${flightNumber}`
+      );
+
+      console.log("API Response:", response.data);
+
+      if (response.data && response.data.length > 0) {
+        setFlightDetails(response.data[0]);
+      } else {
+        setError("No details found for the provided flight number.");
+      }
+    } catch (error) {
+      console.error("Error fetching flight details:", error);
+      setError(
+        error.response?.data?.message ||
+          "Failed to fetch flight details. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
-  const clearResults = () => {
-    setOrigin("");
-    setDestination("");
-    setResults([]);
-    setError("");
+  // Handle booking confirmation
+  const handleBookFlight = () => {
+    if (flightDetails) {
+      alert(`Booked Flight: ${flightDetails.airline_name} (${flightDetails.flnr})`);
+    }
   };
 
   return (
-    <>
-    <Navbar/>
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", marginTop:"130px"}}>
-      <h1>Flight Search</h1>
-      <div style={{ position: "relative" }}>
+    <div>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Video Background */}
+      <video autoPlay loop muted className="video-background">
+        <source src={videoBg} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Main Content */}
+      <div className="flight-container">
+        <h1 className="flight-heading">Flight Search</h1>
         <input
           type="text"
-          placeholder="Enter Origin City"
-          value={origin}
-          onChange={handleOriginChange}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
+          placeholder="Enter Flight Number (e.g., AI2928)"
+          value={flightNumber}
+          onChange={(e) => setFlightNumber(e.target.value)}
         />
-        {originSuggestions.length > 0 && (
-          <ul
-            style={{
-              listStyle: "none",
-              padding: "5px",
-              margin: "0",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              backgroundColor: "#fff",
-              position: "absolute",
-              zIndex: 10,
-              width: "100%",
-            }}
-          >
-            {originSuggestions.map((city, index) => (
-              <li
-                key={index}
-                onClick={() => selectOrigin(city)}
-                style={{
-                  padding: "5px",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #ddd",
-                }}
-              >
-                {city}
-              </li>
-            ))}
-          </ul>
+        <button onClick={handleFlightSearch}>Search Flight</button>
+
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        {flightDetails && (
+          <div className="flight-details">
+            <h2>Flight Details</h2>
+            <p>
+              <strong>Flight:</strong> {flightDetails.airline_name} (
+              {flightDetails.flnr})
+            </p>
+            <p>
+              <strong>Departure:</strong> {flightDetails.departure_name} (
+              {flightDetails.departure_city})
+            </p>
+            <p>
+              <strong>Departure Time:</strong>{" "}
+              {flightDetails.scheduled_departure_local}
+            </p>
+            <p>
+              <strong>Arrival:</strong> {flightDetails.arrival_name} (
+              {flightDetails.arrival_city})
+            </p>
+            <p>
+              <strong>Arrival Time:</strong>{" "}
+              {flightDetails.scheduled_arrival_local}
+            </p>
+            <p>
+              <strong>Status:</strong> {flightDetails.status}
+            </p>
+
+            {/* Book Button */}
+            <button
+              onClick={handleBookFlight}
+              style={{
+                marginTop: "10px",
+                padding: "10px 15px",
+                backgroundColor: "#007BFF",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Book Flight
+            </button>
+          </div>
         )}
       </div>
-      <div style={{ position: "relative" }}>
-        <input
-          type="text"
-          placeholder="Enter Destination City"
-          value={destination}
-          onChange={handleDestinationChange}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        {destinationSuggestions.length > 0 && (
-          <ul
-            style={{
-              listStyle: "none",
-              padding: "5px",
-              margin: "0",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              backgroundColor: "#fff",
-              position: "absolute",
-              zIndex: 10,
-              width: "100%",
-            }}
-          >
-            {destinationSuggestions.map((city, index) => (
-              <li
-                key={index}
-                onClick={() => selectDestination(city)}
-                style={{
-                  padding: "5px",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #ddd",
-                }}
-              >
-                {city}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <button
-        onClick={searchFlights}
-        style={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: "#007bff",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginBottom: "10px",
-        }}
-      >
-        Search Flights
-      </button>
-      <button
-        onClick={clearResults}
-        style={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: "#6c757d",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Clear Results
-      </button>
-
-      {error && <p style={{ color: "red", marginTop: "20px" }}>{error}</p>}
-
-      {results.length > 0 && (
-        <div style={{ marginTop: "20px" }}>
-          <h2>Available Flights</h2>
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {results.map((flight, index) => (
-              <li
-                key={index}
-                style={{
-                  marginBottom: "15px",
-                  padding: "10px",
-                  border: "1px solid #ddd",
-                  borderRadius: "5px",
-                  backgroundColor: "#f9f9f9",
-                }}
-              >
-                <p>
-                  <strong>Flight:</strong> {flight.airline} ({flight.flightNumber})
-                </p>
-                <p>
-                  <strong>From:</strong> {flight.origin} to {flight.destination}
-                </p>
-                <p>
-                  <strong>Departure:</strong> {flight.departureTime},{" "}
-                  <strong>Arrival:</strong> {flight.arrivalTime}
-                </p>
-                <p>
-                  <strong>Duration:</strong> {flight.duration},{" "}
-                  <strong>Price:</strong> ₹{flight.price}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
-    <Footer/>
-      
-    </>
   );
 };
 
