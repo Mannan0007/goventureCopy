@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Cab.css";
-import videoBg from "../images/cabbooking.mp4"; // Correct import path
+import "./Cab.css"; // Import Cab CSS
+import videoBg from "../images/cabbooking.mp4"; // Replace with the correct path to your video
+import Navbar from "./Navbar"; // Import the Navbar component
 
 const Cab = () => {
   const [destination, setDestination] = useState("");
@@ -34,6 +35,9 @@ const Cab = () => {
 
   return (
     <div>
+      {/* Navbar */}
+      <Navbar />
+
       {/* Video Background */}
       <video autoPlay loop muted className="video-background">
         <source src={videoBg} type="video/mp4" />
@@ -48,48 +52,22 @@ const Cab = () => {
           placeholder="Enter Destination"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
         />
-        <button
-          onClick={fetchCabDetails}
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#FF4C4C", // Red color
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Search
-        </button>
+        <button onClick={fetchCabDetails}>Search</button>
 
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
         {cabData.length > 0 && (
-          <div style={{ marginTop: "20px" }}>
-            <h2 style={{ textAlign: "center" }}>AVAILABLE LOCATIONS</h2>
+          <div>
+            <h2 style={{ textAlign: "center" }}>Available Locations</h2>
             <div>
               {cabData.map((cab, index) => (
                 <div
                   key={index}
-                  style={{
-                    marginBottom: "15px",
-                    padding: "15px",
-                    border: "1px solid #ddd",
-                    borderRadius: "5px",
-                    backgroundColor: "#f9f9f9",
-                  }}
+                  className="cab-details"
                 >
-                  <div style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  <div>
                     <strong>Name:</strong> {cab.name}
                   </div>
                   <div>

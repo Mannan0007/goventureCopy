@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import axios from "axios";
+import "./flight.css"; // Import CSS file
+import videoBg from "../images/flightbooking.mp4"; // Replace with correct path to your flight video background
+import Navbar from "./Navbar"; // Import the Navbar component
 
 const FlightSearch = () => {
   const [flightNumber, setFlightNumber] = useState("");
   const [flightDetails, setFlightDetails] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleFlightSearch = async () => {
     setError("");
     setFlightDetails(null);
+    setLoading(true);
 
-    if (!flightNumber) {
+    if (!flightNumber.trim()) {
       setError("Please enter a flight number.");
+      setLoading(false);
       return;
     }
 
@@ -21,11 +25,11 @@ const FlightSearch = () => {
       const response = await axios.get(
         `http://localhost:3000/api/flights?flightNumber=${flightNumber}`
       );
-    
+
       console.log("API Response:", response.data);
-    
+
       if (response.data && response.data.length > 0) {
-        setFlightDetails(response.data[0]); // Adjusted to handle the array
+        setFlightDetails(response.data[0]);
       } else {
         setError("No details found for the provided flight number.");
       }
@@ -33,74 +37,60 @@ const FlightSearch = () => {
       console.error("Error fetching flight details:", error);
       setError(
         error.response?.data?.message ||
-        "Failed to fetch flight details. Please try again."
+          "Failed to fetch flight details. Please try again."
       );
+    } finally {
+      setLoading(false);
     }
-    
   };
 
   return (
-    <>
+    <div>
+      {/* Navbar */}
       <Navbar />
-      <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", marginTop: "130px" }}>
-        <h1>Flight Search</h1>
-        <div style={{ marginBottom: "20px" }}>
-          <input
-            type="text"
-            placeholder="Enter Flight Number (e.g., AI2928)"
-            value={flightNumber}
-            onChange={(e) => setFlightNumber(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
-          />
-          <button
-            onClick={handleFlightSearch}
-            style={{
-              width: "100%",
-              padding: "10px",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Search Flight
-          </button>
-        </div>
 
+      {/* Video Background */}
+      <video autoPlay loop muted className="video-background">
+        <source src={videoBg} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Main Content */}
+      <div className="flight-container">
+        <h1 className="flight-heading">Flight Search</h1>
+        <input
+          type="text"
+          placeholder="Enter Flight Number (e.g., AI2928)"
+          value={flightNumber}
+          onChange={(e) => setFlightNumber(e.target.value)}
+        />
+        <button onClick={handleFlightSearch}>Search Flight</button>
+
+        {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
         {flightDetails && (
-          <div
-            style={{
-              marginTop: "20px",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-              backgroundColor: "#f9f9f9",
-            }}
-          >
+          <div className="flight-details">
             <h2>Flight Details</h2>
             <p>
-              <strong>Flight:</strong> {flightDetails.airline_name} ({flightDetails.flnr})
+              <strong>Flight:</strong> {flightDetails.airline_name} (
+              {flightDetails.flnr})
             </p>
             <p>
-              <strong>Departure:</strong> {flightDetails.departure_name} ({flightDetails.departure_city})
+              <strong>Departure:</strong> {flightDetails.departure_name} (
+              {flightDetails.departure_city})
             </p>
             <p>
-              <strong>Departure Time:</strong> {flightDetails.scheduled_departure_local}
+              <strong>Departure Time:</strong>{" "}
+              {flightDetails.scheduled_departure_local}
             </p>
             <p>
-              <strong>Arrival:</strong> {flightDetails.arrival_name} ({flightDetails.arrival_city})
+              <strong>Arrival:</strong> {flightDetails.arrival_name} (
+              {flightDetails.arrival_city})
             </p>
             <p>
-              <strong>Arrival Time:</strong> {flightDetails.scheduled_arrival_local}
+              <strong>Arrival Time:</strong>{" "}
+              {flightDetails.scheduled_arrival_local}
             </p>
             <p>
               <strong>Status:</strong> {flightDetails.status}
@@ -108,8 +98,7 @@ const FlightSearch = () => {
           </div>
         )}
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 
