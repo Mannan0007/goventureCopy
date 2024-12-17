@@ -38,6 +38,13 @@ const TrainDetails = () => {
     }
   };
 
+  // Handle Booking Confirmation
+  const handleBookTrain = () => {
+    if (trainData) {
+      alert(`Booked Train: ${trainData.trainName} (${trainData.origin} to ${trainData.destination})`);
+    }
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -76,7 +83,8 @@ const TrainDetails = () => {
               <strong>To:</strong> {trainData.destination} ({trainData.stationTo})
             </p>
             <p>
-              <strong>Running On:</strong> <span className="highlight">{trainData.runningOn}</span>
+              <strong>Running On:</strong>{" "}
+              <span className="highlight">{trainData.runningOn}</span>
             </p>
             <p>
               <strong>Classes Available:</strong> {trainData.journeyClasses.join(", ")}
@@ -98,6 +106,23 @@ const TrainDetails = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Book Train Button */}
+            <button
+              onClick={handleBookTrain}
+              style={{
+                marginTop: "10px",
+                padding: "10px 15px",
+                backgroundColor: "#28A745",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}
+            >
+              Book Train
+            </button>
           </div>
         )}
       </div>

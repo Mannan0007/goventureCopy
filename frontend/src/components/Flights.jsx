@@ -44,6 +44,13 @@ const FlightSearch = () => {
     }
   };
 
+  // Handle booking confirmation
+  const handleBookFlight = () => {
+    if (flightDetails) {
+      alert(`Booked Flight: ${flightDetails.airline_name} (${flightDetails.flnr})`);
+    }
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -95,6 +102,22 @@ const FlightSearch = () => {
             <p>
               <strong>Status:</strong> {flightDetails.status}
             </p>
+
+            {/* Book Button */}
+            <button
+              onClick={handleBookFlight}
+              style={{
+                marginTop: "10px",
+                padding: "10px 15px",
+                backgroundColor: "#007BFF",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Book Flight
+            </button>
           </div>
         )}
       </div>

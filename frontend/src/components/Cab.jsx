@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Cab.css"; // Import Cab CSS
-import videoBg from "../images/cabbooking.mp4"; // Replace with the correct path to your video
-import Navbar from "./Navbar"; // Import the Navbar component
+import "./Cab.css";
+import videoBg from "../images/cabbooking.mp4"; // Correct import path
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Cab = () => {
   const [destination, setDestination] = useState("");
@@ -52,22 +53,48 @@ const Cab = () => {
           placeholder="Enter Destination"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "10px",
+            marginBottom: "10px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
         />
-        <button onClick={fetchCabDetails}>Search</button>
+        <button
+          onClick={fetchCabDetails}
+          style={{
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#FF4C4C", // Red color
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Search
+        </button>
 
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
         {cabData.length > 0 && (
-          <div>
-            <h2 style={{ textAlign: "center" }}>Available Locations</h2>
+          <div style={{ marginTop: "20px" }}>
+            <h2 style={{ textAlign: "center" }}>AVAILABLE LOCATIONS</h2>
             <div>
               {cabData.map((cab, index) => (
                 <div
                   key={index}
-                  className="cab-details"
+                  style={{
+                    marginBottom: "15px",
+                    padding: "15px",
+                    border: "1px solid #ddd",
+                    borderRadius: "5px",
+                    backgroundColor: "#f9f9f9",
+                  }}
                 >
-                  <div>
+                  <div style={{ fontWeight: "bold", fontSize: "16px" }}>
                     <strong>Name:</strong> {cab.name}
                   </div>
                   <div>
@@ -88,12 +115,30 @@ const Cab = () => {
                   <div>
                     <strong>Google Place ID:</strong> {cab.googlePlaceId}
                   </div>
+                  {/* Book Button */}
+                  <button
+                    style={{
+                      marginTop: "10px",
+                      padding: "10px 15px",
+                      backgroundColor: "#007BFF", // Blue color
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => alert(`Booked: ${cab.name}`)}
+                  >
+                    Book
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         )}
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
