@@ -1,0 +1,38 @@
+.hotel-page {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .hotel-header h1 {
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .hotel-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .no-hotels {
+    color: red;
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+  

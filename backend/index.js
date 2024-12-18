@@ -70,7 +70,7 @@ const PORT = process.env.PORT || 3000;
 dbConnection();
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3001", credentials: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb" }));

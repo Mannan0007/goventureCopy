@@ -12,6 +12,7 @@ import FlightSearch from './components/Flights';
 import TrainDetails from './components/Train';
 import Cab from './components/Cab';
 import CustomizePackage from './components/CustomizePackage';
+import HotelPage from './components/HotelPage'
 // import './App.css';
 
 
@@ -30,6 +31,8 @@ const App = () => {
       <Route path='/train' element={<TrainDetails/>}/>
       <Route path='/cabs' element={<Cab/>}/>
       <Route path='/customize-package' element={<CustomizePackage/>}/>
+      <Route path='/hotels' element={<HotelPage/>}/>
+
     </Routes>
   );
 };

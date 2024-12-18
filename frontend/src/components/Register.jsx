@@ -6,11 +6,11 @@ import '../styles/register.css'; // Add your custom styles here
 const Registration = () => {
   // State to handle form inputs
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
-
   const [message, setMessage] = useState(''); // To display success or error messages
 
 
@@ -26,7 +26,7 @@ const Registration = () => {
     e.preventDefault();
     try {
       // Update API URL to match your backend server's port
-      const response = await axios.post('http://localhost:3000/api/register', formData);
+      const response = await axios.post('http://localhost:3000/api/auth/register', formData);
       setMessage(response.data.message || 'Registration successful!');
     } catch (error) {
       setMessage(error.response?.data?.message || 'An error occurred during registration.');
